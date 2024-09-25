@@ -1,9 +1,8 @@
 #include <iostream>
 #include <complex>
 #include "Map_Update.hpp"
-#include "Classes.h"
 
-void Map(std::array<int, 2> coordinates, std::array<int, 2> choice, std::array<int, 2> memories) {
+void Map(std::array<int, 2> coordinates, std::array<int, 2> choice, std::array<int, 5> memories) {
 
 	std::cout << "---Map--- \n";
 	for (int row = 0; row < 5; ++row)
@@ -46,29 +45,57 @@ bool Verification(std::array<int, 2>coordinates, std::array<int, 2>choice)
 	}
 }
 
-std::array<int, 2> Memory(std::array<int, 2> Choice)
-{
-	std::array<int, 2> Memories;
-	for (int i = 0; i < Choice.size(); ++i)
-	{
-		Memories[i] = Choice[0];
-	}
-	return Memories;
+std::array<int, 5> Memory(std::array<int, 2> choice, std::array<int, 5>memory, int attempts) {
+
+	memory[attempts] = choice[0] * 10 + choice[1];
+	return memory;
 }
 
-void Game(bool game, std::array<int, 2> answer, std::array<int, 2> coordinates, std::array<int, 2> save, int attempts) {
-	while (game == true)
+void Game(std::array<int, 2> answer, std::array<int, 2> coordinates, std::array<int, 5> save, int attempts) {
+	bool game = true;
+	while (attempts!=5)
 	{
-		std::cout << "Number of attempts left : " << attempts << "\n";
+		std::cout << "Number of attempts left : " << 5-attempts << "\n";
 		answer = Choice(answer);
 		Map(coordinates, answer, save);
 		game = Verification(coordinates, answer);
-		save=Memory(answer);
-		attempts = --attempts;
+		if (game == false){
+			break; }
+		save=Memory(answer, save, attempts);
+		attempts = ++attempts;
+	}
+	if(game==true)
+	{
+		std::cout << "Game over !\nThe correct coordinates were : X - " << coordinates[1]<< " | Y - " << coordinates[0];
 	}
 }
 
-/*void Map_Memory(std::array<int, 2>coordinates)
-{
-	Memory_System first(coordinates[0], coordinates[1]);
-}*/
+void Menu() {
+	int menu = 0;
+	std::cout << "!!! Welcome to treasure hunt !!!\nWhat do you want to do ?\n1 - Play | 2 - Rules\n";
+	std::cin >> menu;
+	if (menu == 2)
+	{
+		std::cout << "To play, you will need to find the hidden treasure by inserting the correct coordinates in a maximum of 5 attempts.\n";
+		std::cout << "Each turn, you will be asked to enter a X coordinate and a Y coordinate.\n";
+		std::cout << "There's how the coordinates are represented on the map\n";
+		std::cout << "---Map--- \n";
+		std::cout << "# 0 1 2 3 4 - X\n";
+		for (int row = 0; row < 5; ++row)
+		{
+			std::cout << row;
+			std::cout << " 0 ";
+			int test = 0;
+			for (int col = 0; col < 4; ++col)
+			{
+				std::cout << "0 ";
+			}
+			std::cout << "\n";
+		}
+		std::cout << "|\n";
+		std::cout << "Y\n";
+		std::cout << "\n- - - - -\n";
+		std::cout << "If the spot is undug, it will be a 0.\nIf the spot is dug but wrong, it will be a 1.\nIf the spot is dug and correct, it will be a 2.\n\n";
+		std::cout << "##########################\n\n";
+	}
+}

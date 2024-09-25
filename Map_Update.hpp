@@ -1,7 +1,21 @@
 #include<iostream>
 
-int Update(int row, int col, std::array<int, 2>coordinates, std::array<int, 2> choice, std::array<int, 2> memories)
+
+bool Map_Memories(int row, int col, std::array<int, 5>memory)
 {
+	for (int i = 0; i < 5; ++i)
+	{
+		int local_memory = memory[i];
+		if (local_memory / 10 == row && local_memory % 10 == col) {
+			return true;
+		}
+	}
+	return false;
+}
+
+int Update(int row, int col, std::array<int, 2>coordinates, std::array<int, 2> choice, std::array<int, 5> memories)
+{
+	bool memory_check = false;
 	if (row == coordinates[0] && coordinates[0]==choice[0] && col == coordinates[1] && choice[1] == coordinates[1])
 	{
 		return 2;
@@ -11,8 +25,8 @@ int Update(int row, int col, std::array<int, 2>coordinates, std::array<int, 2> c
 	{
 		return 1;
 	}
-
-	else if(memories[0] == row && memories[1] == col)
+	memory_check = Map_Memories(row, col, memories);
+	if (memory_check==true)
 	{
 		return 1;
 	}
@@ -34,5 +48,3 @@ void Print(int answer)
 		std::cout << "0 ";
 	}
 }
-
-//FAIRE UNE CLASSE D'OBJETS POUR LA MEMOIRE !!!!!!!

@@ -18,18 +18,12 @@
     <ClCompile Include="924-STD-Array.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Methods.cc">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Functions.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Map_Update.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Classes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

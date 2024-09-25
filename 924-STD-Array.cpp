@@ -4,7 +4,6 @@
 #include <iostream>
 #include <array>
 #include "Functions.hpp"
-#include "Classes.h"
 
 int main()
 {
@@ -13,18 +12,17 @@ int main()
 
 	srand(time(0));
 
-	//std::array<int, 2>coordinates={rand()%5,rand()%5};
 	std::array<int, 2>answer={0,0};
-	std::array<int, 2> save={-1,-1};
-	bool game = true;
-	int attempts = 5;
+	std::array<int, 5> save = { -1,-1,-1,-1,-1 };
+	int attempts = 0;
 	bool matches = true;
+	Menu();
 
 	do
 	{
-		std::array<int, 2>coordinates = { 3,4 };
+		std::array<int, 2>coordinates = { rand() % 5,rand() % 5 };
 		int end_condition = 0;
-		Game(game, answer, coordinates, save, attempts);
+		Game(answer, coordinates, save, attempts);
 		std::cout << "Do you wish to play again ?\n1 - Yes | 2 - No\n";
 		std::cin >> end_condition;
 		std::cout << "\n\n";
