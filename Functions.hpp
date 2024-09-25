@@ -20,11 +20,28 @@ void Map(std::array<int, 2> coordinates, std::array<int, 2> choice, std::array<i
 
 std::array<int, 2> Choice(std::array<int, 2>player_choice)
 {
-	std::cout << "Insert choice for Y coordinate : \n";
-	std::cin >> player_choice[0];
+	bool choice1 = true;
+	do {
+		std::cout << "Insert choice for Y coordinate : \n";
+		std::cin >> player_choice[0];
+		if (player_choice[0] > 4 || player_choice[0]<0)
+		{
+			std::cout<<"The coordinate does not fit on the map, please try again.\n\n";
+			continue;
+		}
+		break;
+	} while (choice1==true);
 
-	std::cout << "Insert choice for X coordinate : \n";
-	std::cin >> player_choice[1];
+	do {
+		std::cout << "Insert choice for X coordinate : \n";
+		std::cin >> player_choice[1];
+		if (player_choice[1] > 4 || player_choice[1] < 0)
+		{
+			std::cout << "The coordinate does not fit on the map, please try again.\n\n";
+			continue;
+		}
+		break;
+	} while (choice1 = true);
 
 	std::cout << "\n";
 
