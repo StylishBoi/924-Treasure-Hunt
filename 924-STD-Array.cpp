@@ -4,24 +4,36 @@
 #include <iostream>
 #include <array>
 #include "Functions.hpp"
+#include "Classes.h"
 
 int main()
 {
+
 	std::array<std::string, 5>map;
 
-	std::array<int, 2>coordinates={3,4};
-	std::array<int, 2>answer={0,0};
-	std::array<int, 2> save = { -1,-1 };
-	bool game = true;
+	srand(time(0));
 
-	while(game==true)
+	//std::array<int, 2>coordinates={rand()%5,rand()%5};
+	std::array<int, 2>answer={0,0};
+	std::array<int, 2> save={-1,-1};
+	bool game = true;
+	int attempts = 5;
+	bool matches = true;
+
+	do
 	{
-		answer = Choice(answer);
-		Map(coordinates, answer, save);
-		game=Verification(coordinates, answer);
-		save = Memory(answer);
-		std::cout << save[0];
-	}
+		std::array<int, 2>coordinates = { 3,4 };
+		int end_condition = 0;
+		Game(game, answer, coordinates, save, attempts);
+		std::cout << "Do you wish to play again ?\n1 - Yes | 2 - No\n";
+		std::cin >> end_condition;
+		std::cout << "\n\n";
+		if (end_condition==2)
+		{
+			break;
+		}
+	} while (matches == true);
+
 
 }
 

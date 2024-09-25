@@ -34,3 +34,5 @@ void Print(int answer)
 		std::cout << "0 ";
 	}
 }
+
+//FAIRE UNE CLASSE D'OBJETS POUR LA MEMOIRE !!!!!!!
